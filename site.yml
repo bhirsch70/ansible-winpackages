@@ -1,6 +1,6 @@
 ---
 - name: Add or remove Windows packages
-  hosts: win
+  hosts: all
 
   roles:
     - ansible-role-winpackages

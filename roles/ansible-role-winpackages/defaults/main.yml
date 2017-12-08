@@ -1,12 +1,12 @@
 ---
 # defaults file for ansible-role-winpackages
 ansible_user: Administrator
-ansible_password: "{{ win_init_pass }}"
+ansible_password: "{{ admin_pass }}"
 ansible_port: 5986
 ansible_connection: winrm
 # The following is necessary for Python 2.7.9+ (or any older Python that has backported SSLContext, eg, Python 2.7.5 on RHEL7) when using default WinRM self-signed certificates:
 ansible_winrm_server_cert_validation: ignore
-win_init_pass: !vault |
+admin_pass: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           62663434326166316264303235623834633631383537643962393736653732373236663532353063
           6263333761356237363065383265626630303464303030620a626139326266393631306364633662

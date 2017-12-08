@@ -1,38 +1,52 @@
-Role Name
-=========
+ansible-winpackages
+===============
+Install or remove Windows Server packages
 
-A brief description of the role goes here.
+Summary
+--------
+This playbook will install or remove a list of defined software packages on a AWS EC2 Windows 2016 server
 
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
-
-Role Variables
---------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
+Prerequisities
 ----------------
+- Creation of an ansible-vault encrypted string to seed the `admin_pass` variable.  See [ansible-vault encrypt_string](https://docs.ansible.com/ansible/2.4/vault.html#use-encrypt-string-to-create-encrypted-variables-to-embed-in-yaml)
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Example Playbook execution
+-------------------------
+`ansible-playbook site.yml --ask-vault-pass`
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+role
+--------
+ansible-role-winpackages
+
+default role vars
+------------
+
+| variable name | description | default |
+|---------------|-------|---------|
+|ansible_connection| method of connection |winrm|
+|ansible_port| port to connect  |5986|
+|ansible_user| User Account |Administrator|
+|admin_pass| ansible-vault encrypted string for initial Windows Administrator password |N/A|
+|ansible_password| ansible password to use to login to new Windows instance |"{{ admin_pass }}"|
+|ansible_winrm_server_cert_validation| Validate or ignore certificate| ignore|
+
+role vars
+------------
+| variable name | description | default |
+|---------------|-------|---------|
+|windows_packages| list of software packages to install |firefox, curl, git, notepad++ |
+
+Example playbook
+-----------
+```
+---
+- name: Add or remove Windows packages
+  hosts: all
+
+  roles:
+    - ansible-role-winpackages
+```
 
 License
 -------
-
 BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
