@@ -1,0 +1,17 @@
+---
+# tasks file for ansible-role-winpackages
+- name: Install Windows packages
+  win_chocolatey:
+    name: "{{ item }}"
+    state: present
+    with_items: "{{ windows_packages }}"
+  tags:
+    - install
+
+- name: Remove Windows packages
+  win_chocolatey:
+    name: "{{ item }}"
+    state: absent
+    with_items: "{{ windows_packages }}"
+  tags:
+    - remove

@@ -1,0 +1,7 @@
+---
+# vars file for ansible-role-winpackages
+windows_packages:
+  - chrome
+  - notepadplusplus.install
+  - git
+  - curl
