@@ -4,7 +4,7 @@
   win_chocolatey:
     name: "{{ item }}"
     state: present
-    with_items: "{{ windows_packages }}"
+  with_items: "{{ windows_packages }}"
   tags:
     - install
 
@@ -12,6 +12,6 @@
   win_chocolatey:
     name: "{{ item }}"
     state: absent
-    with_items: "{{ windows_packages }}"
+  with_items: "{{ windows_packages }}"
   tags:
     - remove

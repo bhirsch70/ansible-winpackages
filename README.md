@@ -12,7 +12,9 @@ Prerequisities
 
 Example Playbook execution
 -------------------------
-`ansible-playbook site.yml --ask-vault-pass`
+`ansible-playbook site.yml --tags="install" --ask-vault-pass`
+
+`ansible-playbook site.yml --tags="remove" --ask-vault-pass`
 
 role
 --------
